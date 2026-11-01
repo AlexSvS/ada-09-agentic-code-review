@@ -104,6 +104,26 @@ def test_success_exit_code_without_matches(capsys):
     assert captured.err == ""
 
 
+def test_no_matches_notification_trims_query_whitespace(capsys):
+    """CR-001 (FR-05, AC-05): Notification trims query whitespace for positional arg."""
+    exit_code = main(["  nonexistent  "])
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert "No customers found matching 'nonexistent'" in captured.out
+    assert captured.err == ""
+
+
+def test_no_matches_notification_trims_query_flag_whitespace(capsys):
+    """CR-001 (FR-05, AC-05): Notification trims query whitespace for --query flag."""
+    exit_code = main(["--query", "  nonexistent  "])
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert "No customers found matching 'nonexistent'" in captured.out
+    assert captured.err == ""
+
+
 def test_subprocess_validation_error_missing_query():
     """Verify subprocess of customer_search exits non-zero on missing query."""
     result = subprocess.run(

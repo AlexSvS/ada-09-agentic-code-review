@@ -89,7 +89,7 @@ def main(
 
     # EH-03: Successful execution returns exit code 0
     if not results:
-        print(f"No customers found matching '{query}'")
+        print(f"No customers found matching '{query.strip()}'")
     else:
         for customer in results:
             print(format_customer(customer))
