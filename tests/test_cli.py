@@ -94,6 +94,32 @@ def test_success_exit_code_with_matches(capsys):
     assert captured.err == ""
 
 
+def test_success_exit_code_with_matches_whitespace_positional(capsys):
+    """CR-001 (FR-02, FR-03, AC-02, AC-03, EH-03):
+    Positional query with whitespace matches records.
+    """
+    exit_code = main(["  smith  "])
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert "John Smith" in captured.out
+    assert "Alice Smith" in captured.out
+    assert captured.err == ""
+
+
+def test_success_exit_code_with_matches_whitespace_flag(capsys):
+    """CR-001 (FR-02, FR-03, AC-02, AC-03, EH-03):
+    Flag query with whitespace matches records.
+    """
+    exit_code = main(["--query", "  smith  "])
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert "John Smith" in captured.out
+    assert "Alice Smith" in captured.out
+    assert captured.err == ""
+
+
 def test_success_exit_code_without_matches(capsys):
     """EH-03, NFR-02: Successful query with no matches terminates with exit code 0."""
     exit_code = main(["no_such_customer_query_here"])

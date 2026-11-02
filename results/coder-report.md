@@ -51,4 +51,26 @@
 - [x] No undocumented dependency/API introduced
 - [x] Ready for independent review
 
+## Fix Cycle
+
+### Findings Addressed
+- **RF-01** (Severity: MUST FIX): REJECTED by human decision. No action taken.
+- **RF-02** (Severity: MUST FIX): MODIFIED by human decision. Untracked all `.pyc` files from git cache (`src/customer_search/__pycache__`, `tests/__pycache__`), added `.gitignore` file ignoring `__pycache__/`, `*.pyc`, `.pytest_cache/`, and `.ruff_cache/`, and committed the cleanup.
+- **RF-03** (Severity: SHOULD FIX): ACCEPTED by human decision. Added regression tests in `tests/test_cli.py` (`test_success_exit_code_with_matches_whitespace_positional` and `test_success_exit_code_with_matches_whitespace_flag`) verifying that queries containing leading/trailing whitespace that match records return the expected customer records and exit with code 0.
+- **RF-04** (Severity: OPTIONAL): REJECTED by human decision. No action taken.
+- **RF-05** (Severity: OPTIONAL): REJECTED by human decision. No action taken.
+
+### Files Changed in Fix Cycle
+- `.gitignore`: Added ignore rules for Python bytecode and caches (`__pycache__/`, `*.pyc`, `.pytest_cache/`, `.ruff_cache/`).
+- `tests/test_cli.py`: Added 2 tests for whitespace-padded matching queries (`test_success_exit_code_with_matches_whitespace_positional`, `test_success_exit_code_with_matches_whitespace_flag`).
+- `results/coder-report.md`: Added Fix Cycle section documenting resolved review findings.
+
+### Git Index Changes
+- Untracked all `.pyc` files previously committed in `src/customer_search/__pycache__/` and `tests/__pycache__/`.
+
+### Re-Verification Results
+- Test suite: 48/48 passed (44 baseline + 2 from initial CR-001 + 2 from fix cycle) in 0.54s.
+- Ruff lint check: 0 errors / clean.
+- Repository verification: Re-ran equivalent verification steps (pytest, ruff, CLI smoke test); all checks passed. Direct execution of `bash scripts/verify_repo.sh` remains limited by the Windows environment permissions (`E_ACCESSDENIED`).
+
 This report is NOT an approval.
