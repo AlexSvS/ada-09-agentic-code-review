@@ -55,7 +55,7 @@
 
 ### Findings Addressed
 - **RF-01** (Severity: MUST FIX): REJECTED by human decision. No action taken.
-- **RF-02** (Severity: MUST FIX): MODIFIED by human decision. Untracked all `.pyc` files from git cache (`src/customer_search/__pycache__`, `tests/__pycache__`), added `.gitignore` file ignoring `__pycache__/`, `*.pyc`, `.pytest_cache/`, and `.ruff_cache/`, and committed the cleanup.
+- **RF-02** (Severity: MUST FIX): MODIFIED by human decision. Untracked all `.pyc` files from git cache (`src/customer_search/__pycache__`, `tests/__pycache__`), added `.gitignore` file ignoring `__pycache__/`, `*.pyc`, `.pytest_cache/`, and `.ruff_cache/`, and staged the cleanup for commit.
 - **RF-03** (Severity: SHOULD FIX): ACCEPTED by human decision. Added regression tests in `tests/test_cli.py` (`test_success_exit_code_with_matches_whitespace_positional` and `test_success_exit_code_with_matches_whitespace_flag`) verifying that queries containing leading/trailing whitespace that match records return the expected customer records and exit with code 0.
 - **RF-04** (Severity: OPTIONAL): REJECTED by human decision. No action taken.
 - **RF-05** (Severity: OPTIONAL): REJECTED by human decision. No action taken.
